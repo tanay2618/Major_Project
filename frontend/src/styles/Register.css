@@ -1,0 +1,219 @@
+/**
+ * Register.css
+ * Airwallex-inspired centered auth card
+ */
+
+:root {
+  --reg-bg: #f8fafc;
+  --reg-card-bg: #ffffff;
+  --reg-primary: #635bff;
+  --reg-primary-hover: #4b44cc;
+  --reg-text: #0f172a;
+  --reg-text-muted: #64748b;
+  --reg-border: #e2e8f0;
+  --reg-border-focus: #635bff;
+  --reg-error-bg: #fef2f2;
+  --reg-error-text: #dc2626;
+  --reg-error-border: #fca5a5;
+  --reg-radius: 16px;
+  --reg-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  --reg-font: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--reg-bg);
+  font-family: var(--reg-font);
+  padding: 32px 20px;
+  box-sizing: border-box;
+}
+
+.register-card {
+  background: var(--reg-card-bg);
+  border: 1px solid var(--reg-border);
+  border-radius: var(--reg-radius);
+  box-shadow: var(--reg-shadow);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.register-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.register-brand__logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #635bff 0%, #4b44cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(99, 91, 255, 0.3);
+}
+
+.register-brand__name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--reg-text);
+  letter-spacing: -0.02em;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.register-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--reg-text);
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.register-subtitle {
+  font-size: 0.875rem;
+  color: var(--reg-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.register-error {
+  background-color: var(--reg-error-bg);
+  color: var(--reg-error-text);
+  border: 1px solid var(--reg-error-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.register-field label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.register-input,
+.register-select {
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--reg-border);
+  border-radius: 10px;
+  font-size: 0.925rem;
+  font-family: var(--reg-font);
+  color: var(--reg-text);
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.register-input:focus,
+.register-select:focus {
+  outline: none;
+  border-color: var(--reg-border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15);
+}
+
+.register-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.register-input-wrap .register-input {
+  padding-right: 44px;
+}
+
+.register-eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--reg-text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.register-eye-btn:hover {
+  color: var(--reg-text);
+}
+
+.register-submit-btn {
+  height: 48px;
+  background-color: var(--reg-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--reg-font);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(99, 91, 255, 0.25);
+}
+
+.register-submit-btn:hover:not(:disabled) {
+  background-color: var(--reg-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 91, 255, 0.35);
+}
+
+.register-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.875rem;
+  color: var(--reg-text-muted);
+}
+
+.register-footer a {
+  color: var(--reg-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
