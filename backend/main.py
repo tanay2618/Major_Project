@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -5,6 +7,19 @@ from database import engine, Base, get_db
 import models
 import schemas
 import auth
+from verification.router import router as verification_router
+
+load_dotenv()
+
+# "development" (default) or "production". Demo accounts are only seeded in development.
+ENV = os.getenv("ENV", "development")
+
+# Comma-separated list in backend/.env, e.g. ALLOWED_ORIGINS=https://myapp.com
+ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+    if o.strip()
+]
 
 # Create database tables automatically if they don't exist in Supabase
 Base.metadata.create_all(bind=engine)
@@ -17,15 +32,20 @@ app = FastAPI(
 # Enable CORS for React frontend (Vite default port: 5173)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Seed default demo accounts on startup
+# Document verification endpoints (/api/verify/...)
+app.include_router(verification_router)
+
+# Seed default demo accounts on startup (development only)
 @app.on_event("startup")
 def seed_demo_accounts():
+    if ENV != "development":
+        return
     db = next(get_db())
     try:
         # Check Applicant
